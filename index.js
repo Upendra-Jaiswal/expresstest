@@ -15,25 +15,25 @@ const __dirname = dirname(__filename);
 
 const upload = multer({ dest: "temp-uploads/" }); // Temporary storage
 
-app.post("/upload", upload.single("file"), (req, res) => {
-  if (!req.file) {
-    return res.status(400).send("No file uploaded.");
-  }
+// app.post("/upload", upload.single("file"), (req, res) => {
+//   if (!req.file) {
+//     return res.status(400).send("No file uploaded.");
+//   }
 
-  const uploadedFilePath = join(__dirname, req.file.path);
+//   const uploadedFilePath = join(__dirname, req.file.path);
 
-  try {
-    const result = processFile(uploadedFilePath);
-    res.json(result);
-  } catch (error) {
-    res.status(500).send(error.message);
-  } finally {
-    // Clean up temporary file
-    fs.unlink(uploadedFilePath, (err) => {
-      if (err) console.error("Error deleting file:", err);
-    });
-  }
-});
+//   try {
+//     const result = processFile(uploadedFilePath);
+//     res.json(result);
+//   } catch (error) {
+//     res.status(500).send(error.message);
+//   } finally {
+//     // Clean up temporary file
+//     fs.unlink(uploadedFilePath, (err) => {
+//       if (err) console.error("Error deleting file:", err);
+//     });
+//   }
+// });
 
 app.get("/", (req, res) => {
   res.send("sever is running");
